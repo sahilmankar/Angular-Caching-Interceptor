@@ -1,27 +1,61 @@
-# AngularCachingInterceptor
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.2.
+# Angular Caching with HTTP Interceptor
 
-## Development server
+## Introduction
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+This repository demonstrates how to implement caching in an Angular application using an HTTP Interceptor. The caching mechanism is designed to cache GET requests and improve performance by serving cached responses when available.
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Follow these steps to set up and run the project locally:
 
-## Build
+ 1. Clone the repository:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+ ```bash
+   git clone https://github.com/sahilmankar/Angular-Caching-Interceptor.git
+ ```
 
-## Running unit tests
+2. Navigate to the project directory:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+cd angular-caching
+```
 
-## Running end-to-end tests
+3. Install dependencies:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+npm install
+```
 
-## Further help
+4. Run the application:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+ng serve
+```
+
+Open your browser and navigate to http://localhost:4200/ to view the application.
+
+## Implementation Details
+### HTTP Interceptor
+The core of the caching mechanism lies in the Caching Interceptor provided in the src/app/cache.interceptor.ts file. This interceptor checks if a request is a GET request, and if so, it looks for a cached response. If a cached response is available and not expired, it is returned. Otherwise, the request is sent to the server, and the response is cached for future use.
+
+### Caching Strategy
+The caching strategy is simple:
+
+Cache is based on the request URL.
+Each cached entry includes the response and an expiration date.
+```bash
+private _cache: Map<string, { expireDate: Date; response: HttpResponse<any> }> = new Map();
+```
+### Cache Expiry Time
+The cache expiry time is set to 10 seconds by default. You can customize this value based on your specific requirements.
+```bash
+ private cacheExpireTime = 10000;
+ expireDate: new Date(Date.now() + this.cacheExpireTime)  // cache expire after 10 seconds
+```
+
+## Usage
+
+1. **Automatic Caching:**
+   - The interceptor automatically handles caching for GET requests.
+
