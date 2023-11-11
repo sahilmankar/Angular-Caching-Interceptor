@@ -1,21 +1,20 @@
 
 # Angular Caching with HTTP Interceptor
-1. [**Introduction**](Introduction)
-2. [**Installation**](Installation)
-3. [**Implementation Details**](ImplementationDetails)
+- [Introduction](#introduction)
+- [Installation](#installation)
+- [Implementation Details](#implementation-details)
 
 ## Introduction
 
 This repository demonstrates how to implement caching in an Angular15 application using an HTTP Interceptor. The caching mechanism is designed to cache GET requests and improve performance by serving cached responses when available.
 
 ## Installation
-
 Follow these steps to set up and run the project locally:
 
  1. Clone the repository:
 
  ```bash
-   git clone https://github.com/sahilmankar/Angular-Caching-Interceptor.git
+ git clone https://github.com/sahilmankar/Angular-Caching-Interceptor.git
  ```
 
 2. Navigate to the project directory:
@@ -67,5 +66,3 @@ The interceptor includes an automatic cleanup mechanism:
 ```bash
 setInterval(() => this.cleanupExpiredEntries(), 120000);
 ```
-
-
